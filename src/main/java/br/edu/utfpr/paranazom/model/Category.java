@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,7 +22,10 @@ public class Category {
 	)
 	private String category_id;
 	
+	@NotNull
+	@Size(min = 3, max = 50)	
 	private String name;
+	
 	private String description;
 	private String image_url;
 	
