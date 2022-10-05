@@ -101,7 +101,7 @@ public class Client {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(cpf);
+		return Objects.hash(client_id);
 	}
 
 	@Override
