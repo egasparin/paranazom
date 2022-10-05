@@ -35,7 +35,7 @@ public class ClientResource {
 	private ClientService clientService;
 	
 	@GetMapping
-	public List<ClientRepository> list() {
+	public List<Client> list() {
 		return clientRepository.findAll();
 	}
 	
@@ -44,7 +44,7 @@ public class ClientResource {
 	public ResponseEntity<Client> create(@RequestBody Client client, HttpServletResponse response) {
 		Client clientSave = clientRepository.save(client);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{client_id}").buildAndExpand(clientSave.getClient_id()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{client_id}").buildAndExpand(clientSave.getClientId()).toUri();
 //		response.setHeader("Location", uri.toASCIIString());
 		
 		return ResponseEntity.created(uri).body(clientSave);
