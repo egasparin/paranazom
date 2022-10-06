@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,8 +19,11 @@ public class Role {
 		name = "UUID",
 		strategy = "org.hibernate.id.UUIDGenerator"
 	)
+	
+	@NotNull
 	private String role_id;
 	
+	@NotNull
 	private String description;
 
 	public String getRole_id() {
