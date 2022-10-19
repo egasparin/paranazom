@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "tb_product_has_tb_order")
-public class ProductOrderRelation {
+@Table(name = "tb_options_has_tb_product")
+public class OptionProductRelation {
 	
 	@Id @GeneratedValue(generator = "UUID")
 	@GenericGenerator(
@@ -23,18 +23,18 @@ public class ProductOrderRelation {
 	
 	// Definição dos atributos;
 	@NotNull
-	private String prodOrderRelation_id;
+	private String optionProdRelation_id;
 	
 	@ManyToOne
     @JoinColumn(name="product_id", nullable=false)
 	private Product product;
 
 	@ManyToOne
-    @JoinColumn(name="order_id", nullable=false)
-	private Order order;
+    @JoinColumn(name="option_id", nullable=false)
+	private Options option;
 
 	@NotNull
-	private Long amount;
+	private String description;
 	
 	public Product getProduct() {
 		return product;
@@ -44,33 +44,34 @@ public class ProductOrderRelation {
 		this.product = product;
 	}
 
-	public String getProdOrderRelation_id() {
-		return prodOrderRelation_id;
+	public Options getOption() {
+		return option;
 	}
 
-	public void setProdOrderRelation_id(String prodOrderRelation_id) {
-		this.prodOrderRelation_id = prodOrderRelation_id;
+	public void setOption(Options option) {
+		this.option = option;
 	}
 
-	public Order getOrder() {
-		return order;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	public Long getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Long amount) {
-		this.amount = amount;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
+	public String getOptionProdRelation_id() {
+		return optionProdRelation_id;
+	}
+
+	public void setOptionProdRelation_id(String optionProdRelation_id) {
+		this.optionProdRelation_id = optionProdRelation_id;
+	}
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(prodOrderRelation_id);
+		return Objects.hash(optionProdRelation_id);
 	}
 
 	@Override
@@ -81,8 +82,10 @@ public class ProductOrderRelation {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProductOrderRelation other = (ProductOrderRelation) obj;
-		return Objects.equals(prodOrderRelation_id, other.prodOrderRelation_id);
+		OptionProductRelation other = (OptionProductRelation) obj;
+		return Objects.equals(optionProdRelation_id, other.optionProdRelation_id);
 	}
+
+
 }
 	

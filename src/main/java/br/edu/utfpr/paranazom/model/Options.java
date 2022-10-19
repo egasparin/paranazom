@@ -1,9 +1,11 @@
 package br.edu.utfpr.paranazom.model;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -42,6 +44,9 @@ public class Options {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@OneToMany(mappedBy="option")
+	private List<OptionProductRelation> optionProductRelation;
 	
 	@Override
 	public int hashCode() {

@@ -1,10 +1,12 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -25,6 +27,9 @@ public class Role {
 	
 	@NotNull
 	private String description;
+	
+	@OneToMany(mappedBy="role")
+	private List<Employee> employee;
 
 	public String getRole_id() {
 		return role_id;
@@ -40,6 +45,14 @@ public class Role {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Employee> getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(List<Employee> employee) {
+		this.employee = employee;
 	}
 
 	@Override

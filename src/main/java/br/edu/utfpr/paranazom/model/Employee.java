@@ -1,11 +1,16 @@
 package br.edu.utfpr.paranazom.model;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,9 +40,17 @@ public class Employee {
 	
 	@NotNull
 	private Date entry_date;
+		
+	@OneToOne
+    @JoinColumn(name="user_id", nullable=false)
+	private User user;
 	
-	@NotNull
-	private Role role; //falta definir os metodos de captura do role, bem como a relação (embebed?)
+	@ManyToOne
+    @JoinColumn(name="role_id", nullable=false)
+	private Role role;
+	
+	@OneToMany(mappedBy="employee")
+	private List<Order> order;
 	
 	// Declaração dos Sets e Gets
 
@@ -73,6 +86,30 @@ public class Employee {
 		this.entry_date = entry_date;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(employee_id);

@@ -1,10 +1,12 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
@@ -29,6 +31,9 @@ public class Category {
 	private String description;
 	private String image_url;
 	
+	@OneToMany(mappedBy="category")
+	private List<Product> product;
+	
 	public String getCategory_id() {
 		return category_id;
 	}
@@ -52,6 +57,12 @@ public class Category {
 	}
 	public void setImage_url(String image_url) {
 		this.image_url = image_url;
+	}
+	public List<Product> getProduct() {
+		return product;
+	}
+	public void setProduct(List<Product> product) {
+		this.product = product;
 	}
 	@Override
 	public int hashCode() {

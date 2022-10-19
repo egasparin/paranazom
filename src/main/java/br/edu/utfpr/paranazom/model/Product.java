@@ -1,10 +1,14 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -43,6 +47,16 @@ public class Product {
 
 	// temos que definir o tipo de relacionamento;
 	private Category category;
+	
+	@OneToMany(mappedBy="product")
+	private List<OptionProductRelation> optionProductRelation;
+	
+	@OneToMany(mappedBy="product")
+	private List<ProductOrderRelation> productOrderRelation;
+	
+	@ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
+	private Product product;
 	
 	// Declaração do getters e setters;
 	public Category getCategory() {
@@ -93,6 +107,30 @@ public class Product {
 		this.product_id = product_id;
 	}
 	
+	public List<OptionProductRelation> getOptionProductRelation() {
+		return optionProductRelation;
+	}
+
+	public void setOptionProductRelation(List<OptionProductRelation> optionProductRelation) {
+		this.optionProductRelation = optionProductRelation;
+	}
+
+	public List<ProductOrderRelation> getProductOrderRelation() {
+		return productOrderRelation;
+	}
+
+	public void setProductOrderRelation(List<ProductOrderRelation> productOrderRelation) {
+		this.productOrderRelation = productOrderRelation;
+	}
+	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(getProduct_id());

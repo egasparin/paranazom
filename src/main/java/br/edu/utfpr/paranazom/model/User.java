@@ -5,6 +5,7 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -30,11 +31,10 @@ public class User {
 	@NotNull
 	private String password;
 	
-	@SuppressWarnings("unused")
+	@OneToOne(mappedBy="user")
 	private Employee employee;
 	
 	// Definição dos metodos;
-	// Falta definir o metodo para o Employee e a relação entre as tabelas;
 	public String getUser_id() {
 		return user_id;
 	}
@@ -57,6 +57,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	@Override

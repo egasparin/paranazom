@@ -1,11 +1,13 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,6 +41,9 @@ public class Client {
 	private String email_address;
 	private String phone_number;
 	private String address;
+	
+	@OneToMany(mappedBy="client")
+	private List<Order> order;
 
 	// Declaração dos Sets e Gets
 	public String getClientId() {
@@ -99,6 +104,14 @@ public class Client {
 		this.name = name;
 	}
 	
+	public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(client_id);

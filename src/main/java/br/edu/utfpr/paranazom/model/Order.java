@@ -1,10 +1,14 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -40,14 +44,18 @@ public class Order {
 	
 	private float discount;
 	
-	@NotNull
+	@ManyToOne
+    @JoinColumn(name="employee_id", nullable=false)
+	private Employee employee;
+	
+	@ManyToOne
+    @JoinColumn(name="client_id", nullable=false)
 	private Client client;
 	
-	@NotNull
-	private Employee employe;
+	@OneToMany(mappedBy="order")
+	private List<ProductOrderRelation> productOrderRelation;
 
 	// Declaração dos Sets e Gets
-	
 
 	public String getOrder_id() {
 		return order_id;
@@ -107,9 +115,24 @@ public class Order {
 	}
 	
 	// falta o metodo para capturar o employee
-	
-	
-	
+		
+	public List<ProductOrderRelation> getProductOrderRelation() {
+		return productOrderRelation;
+	}
+
+	public void setProductOrderRelation(List<ProductOrderRelation> productOrderRelation) {
+		this.productOrderRelation = productOrderRelation;
+	}
+
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(order_id);
