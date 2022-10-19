@@ -46,6 +46,8 @@ public class Product {
 	private String image_url;
 
 	// temos que definir o tipo de relacionamento;
+	@ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
 	private Category category;
 	
 	@OneToMany(mappedBy="product")
@@ -53,10 +55,6 @@ public class Product {
 	
 	@OneToMany(mappedBy="product")
 	private List<ProductOrderRelation> productOrderRelation;
-	
-	@ManyToOne
-    @JoinColumn(name="category_id", nullable=false)
-	private Product product;
 	
 	// Declaração do getters e setters;
 	public Category getCategory() {
@@ -121,14 +119,6 @@ public class Product {
 
 	public void setProductOrderRelation(List<ProductOrderRelation> productOrderRelation) {
 		this.productOrderRelation = productOrderRelation;
-	}
-	
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
 	}
 
 	@Override

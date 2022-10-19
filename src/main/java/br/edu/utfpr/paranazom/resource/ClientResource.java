@@ -38,18 +38,18 @@ public class ClientResource {
 	public List<Client> list() {
 		return clientRepository.findAll();
 	}
-	
+		
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Client> create(@RequestBody Client client, HttpServletResponse response) {
 		Client clientSave = clientRepository.save(client);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{client_id}").buildAndExpand(clientSave.getClientId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{client_id}").buildAndExpand(clientSave.getClient_id()).toUri();
 //		response.setHeader("Location", uri.toASCIIString());
 		
 		return ResponseEntity.created(uri).body(clientSave);
 	}
-	
+//	
 	@GetMapping("/{client_id}")
 	public ResponseEntity<?> getByCode(@PathVariable String client_id) {
 		Optional<Client> client = clientRepository.findById(client_id);

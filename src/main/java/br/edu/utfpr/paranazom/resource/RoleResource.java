@@ -19,8 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.edu.utfpr.paranazom.model.Role;
 import br.edu.utfpr.paranazom.repository.RoleRepository;
 
-
-
 @RestController
 @RequestMapping("/roles")
 public class RoleResource {

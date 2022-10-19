@@ -25,7 +25,7 @@ import br.edu.utfpr.paranazom.repository.ProductRepository;
 import br.edu.utfpr.paranazom.service.ProductService;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductResource {
 
 	@Autowired

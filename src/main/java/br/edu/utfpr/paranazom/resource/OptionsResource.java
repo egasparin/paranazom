@@ -22,7 +22,7 @@ import br.edu.utfpr.paranazom.repository.OptionsRepository;
 
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/options")
 public class OptionsResource {
 	@Autowired
 	private OptionsRepository optionsRepository;

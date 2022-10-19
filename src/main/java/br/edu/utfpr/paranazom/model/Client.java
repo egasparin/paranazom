@@ -23,9 +23,6 @@ public class Client {
 		name = "UUID",
 		strategy = "org.hibernate.id.UUIDGenerator"
 	)
-	
-	// Declaração dos atributos;
-	
 	private String client_id;
 	
 	@NotNull
@@ -33,51 +30,34 @@ public class Client {
 	private String name;
 	
 	@NotNull
-	@Column(length = 11)
+	@Column(length = 11, name = "CPF")
 	private String cpf;
 	
-
+	@Column(name = "RG")
 	private String rg;
 	private String email_address;
-	private String phone_number;
+	private String fone_number;
 	private String address;
 	
 	@OneToMany(mappedBy="client")
 	private List<Order> order;
 
 	// Declaração dos Sets e Gets
-	public String getClientId() {
+
+	public String getClient_id() {
 		return client_id;
 	}
 
-	public void setClientId(String client_id) {
+	public void setClient_id(String client_id) {
 		this.client_id = client_id;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getName() {
+		return name;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getPhoneNumber() {
-		return phone_number;
-	}
-
-	public void setPhoneNumber(String phone_number) {
-		this.phone_number = phone_number;
-	}
-
-	@SuppressWarnings("unused")
-	private String getEmailAddress() {
-		return email_address;
-	}
-
-	@SuppressWarnings("unused")
-	private void setEmailAddress(String email_address) {
-		this.email_address = email_address;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCpf() {
@@ -96,20 +76,46 @@ public class Client {
 		this.rg = rg;
 	}
 
-	public String getName() {
-		return name;
+	public String getEmail_address() {
+		return email_address;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmail_address(String email_address) {
+		this.email_address = email_address;
 	}
-	
+
+	public String getFone_number() {
+		return fone_number;
+	}
+
+	public void setFone_number(String phone_number) {
+		this.fone_number = phone_number;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public List<Order> getOrder() {
 		return order;
 	}
 
 	public void setOrder(List<Order> order) {
 		this.order = order;
+	}
+
+	@SuppressWarnings("unused")
+	private void setEmailAddress(String email_address) {
+		this.email_address = email_address;
+	}
+	
+	@SuppressWarnings("unused")
+	private String getEmailAddress() {
+		return email_address;
 	}
 
 	@Override
@@ -128,5 +134,5 @@ public class Client {
 		Client other = (Client) obj;
 		return Objects.equals(client_id, other.client_id);
 	}
-	
+		
 }
