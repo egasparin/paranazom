@@ -1,7 +1,7 @@
 package br.edu.utfpr.paranazom.model;
 
 import java.sql.Date;
-import java.util.List;
+//import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -49,8 +49,8 @@ public class Employee {
     @JoinColumn(name="role_id", nullable=false)
 	private Role role;
 	
-	@OneToMany(mappedBy="employee")
-	private List<Order> order;
+//	@OneToMany(mappedBy="employee")
+//	private List<Order> order;
 	
 	// Declaração dos Sets e Gets
 
@@ -102,13 +102,13 @@ public class Employee {
 		this.role = role;
 	}
 
-	public List<Order> getOrder() {
-		return order;
-	}
-
-	public void setOrder(List<Order> order) {
-		this.order = order;
-	}
+//	public List<Order> getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(List<Order> order) {
+//		this.order = order;
+//	}
 
 	@Override
 	public int hashCode() {

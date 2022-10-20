@@ -1,13 +1,13 @@
 package br.edu.utfpr.paranazom.model;
 
-import java.util.List;
+//import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,8 +39,9 @@ public class Client {
 	private String fone_number;
 	private String address;
 	
-	@OneToMany(mappedBy="client")
-	private List<Order> order;
+//	@Nullable
+//	@OneToMany(mappedBy="client")
+//	private List<Order> order;
 
 	// Declaração dos Sets e Gets
 
@@ -100,13 +101,13 @@ public class Client {
 		this.address = address;
 	}
 
-	public List<Order> getOrder() {
-		return order;
-	}
-
-	public void setOrder(List<Order> order) {
-		this.order = order;
-	}
+//	public List<Order> getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(List<Order> order) {
+//		this.order = order;
+//	}
 
 	@SuppressWarnings("unused")
 	private void setEmailAddress(String email_address) {
