@@ -23,6 +23,19 @@ public class ClientRepositoryImplementation implements ClientRepositoryQuery {
 	private EntityManager manager;
 	
 	@Override
+	public List<Client> filter(ClientFilter clientFilter) {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Client> criteria = builder.createQuery(Client.class);
+		Root<Client> root = criteria.from(Client.class);
+		
+		Predicate[] predicates = criarRestricoes(clientFilter, builder, root);
+		criteria.where(predicates);
+		
+		TypedQuery<Client> query = manager.createQuery(criteria);
+		return query.getResultList();
+	}
+	/*
+	@Override
 	public List<Client> porNome(ClientFilter clientFilter) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Client> criteria = builder.createQuery(Client.class);
@@ -47,6 +60,7 @@ public class ClientRepositoryImplementation implements ClientRepositoryQuery {
 		TypedQuery<Client> query = manager.createQuery(criteria);
 		return query.getResultList();
 	}
+	*/
 	
 	@SuppressWarnings("deprecation")
 	private Predicate[] criarRestricoes(ClientFilter clientFilter, CriteriaBuilder builder,	Root<Client> root) {
@@ -54,12 +68,12 @@ public class ClientRepositoryImplementation implements ClientRepositoryQuery {
 		
 		if (!StringUtils.isEmpty(clientFilter.getName())) {
 			predicates.add(builder.like(
-					builder.lower(root.get("Nome: ")), "%" + clientFilter.getName().toLowerCase() + "%")); 
+					builder.lower(root.get("name")), "%" + clientFilter.getName().toLowerCase() + "%")); 
 		}
 		
 		if (!StringUtils.isEmpty(clientFilter.getCpf())) {
 			predicates.add(builder.like(
-					builder.lower(root.get("CPF: ")), "%" + clientFilter.getCpf().toLowerCase() + "%")); 
+					builder.lower(root.get("cpf")), "%" + clientFilter.getCpf().toLowerCase() + "%")); 
 		}
 		
 		return predicates.toArray(new Predicate[predicates.size()]);

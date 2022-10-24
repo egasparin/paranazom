@@ -22,6 +22,20 @@ public class ProductRepositoryImplementation implements ProductRepositoryQuery{
 	private EntityManager manager;
 	
 	@Override
+	public List<Product> filter(ProductFilter productFilter) {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
+		Root<Product> root = criteria.from(Product.class);
+		
+		Predicate[] predicates = criarRestricoes(productFilter, builder, root);
+		criteria.where(predicates);
+		
+		TypedQuery<Product> query = manager.createQuery(criteria);
+		return query.getResultList();
+	}
+	
+	/*
+	@Override
 	public List<Product> porNome(ProductFilter productFilter) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
@@ -72,6 +86,7 @@ public class ProductRepositoryImplementation implements ProductRepositoryQuery{
 		TypedQuery<Product> query = manager.createQuery(criteria);
 		return query.getResultList();
 	}
+	*/
 	
 	@SuppressWarnings("deprecation")
 	private Predicate[] criarRestricoes(ProductFilter productFilter, CriteriaBuilder builder,	Root<Product> root) {
@@ -79,21 +94,24 @@ public class ProductRepositoryImplementation implements ProductRepositoryQuery{
 		
 		if (!StringUtils.isEmpty(productFilter.getName())) {
 			predicates.add(builder.like(
-					builder.lower(root.get("Nome: ")), "%" + productFilter.getName().toLowerCase() + "%")); 
+					builder.lower(root.get("nome")), "%" + productFilter.getName().toLowerCase() + "%")); 
 		}
 		
 		if (!StringUtils.isEmpty(productFilter.getTags())) {
 			predicates.add(builder.like(
-					builder.lower(root.get("CPF: ")), "%" + productFilter.getTags().toLowerCase() + "%")); 
+					builder.lower(root.get("tag")), "%" + productFilter.getTags().toLowerCase() + "%")); 
 		}
 		
-		// falta implementar os retornos por valor maximo e minimo
-		/*
-		if (!StringUtils.isEmpty(productFilter.getPrice())) {
-			predicates.add(builder.like(
-					builder.lower(root.get("CPF: ")), "%" + productFilter.getTags().toLowerCase() + "%")); 
+		if (productFilter.getPrice() != null) {
+			predicates.add(
+					builder.greaterThanOrEqualTo(root.get("minValue"), productFilter.getPrice())); 
 		}
-		*/
+		
+		if (productFilter.getPrice() != null) {
+			predicates.add(
+					builder.lessThanOrEqualTo(root.get("maxValue"), productFilter.getPrice())); 
+		}
+		
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
 

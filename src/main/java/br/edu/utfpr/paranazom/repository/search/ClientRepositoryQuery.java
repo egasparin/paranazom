@@ -6,6 +6,7 @@ import br.edu.utfpr.paranazom.repository.filter.ClientFilter;
 
 public interface ClientRepositoryQuery {
 
-	public List<Client> porNome(ClientFilter clientFilter);
-	public List<Client> porCpf(ClientFilter clientFilter);
+	public List<Client> filter(ClientFilter clientFilter);
+//	public List<Client> porNome(ClientFilter clientFilter);
+//	public List<Client> porCpf(ClientFilter clientFilter);
 }

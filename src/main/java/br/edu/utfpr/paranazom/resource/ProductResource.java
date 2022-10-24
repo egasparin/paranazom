@@ -22,6 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.utfpr.paranazom.model.Product;
 import br.edu.utfpr.paranazom.repository.ProductRepository;
+import br.edu.utfpr.paranazom.repository.filter.ProductFilter;
 import br.edu.utfpr.paranazom.service.ProductService;
 
 @RestController
@@ -34,9 +35,14 @@ public class ProductResource {
 	@Autowired
 	private ProductService productService;
 	
+//	@GetMapping
+//	public List<Product> list() {
+//		return productRepository.findAll();
+//	}
+	
 	@GetMapping
-	public List<Product> list() {
-		return productRepository.findAll();
+	public List<Product> filter(ProductFilter productFilter){
+		return productRepository.filter(productFilter);
 	}
 	
 	@PostMapping
