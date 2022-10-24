@@ -7,6 +7,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.utfpr.paranazom.model.Client;
 import br.edu.utfpr.paranazom.repository.ClientRepository;
+import br.edu.utfpr.paranazom.repository.filter.ClientFilter;
 import br.edu.utfpr.paranazom.service.ClientService;
 
 @RestController
@@ -37,6 +40,11 @@ public class ClientResource {
 	@GetMapping
 	public List<Client> list() {
 		return clientRepository.findAll();
+	}
+	
+	@GetMapping
+	public Page<Client> pageFilter(ClientFilter clientFilter, Pageable pageable){
+		return clientRepository.pageFilter(clientFilter, pageable);
 	}
 		
 	@PostMapping

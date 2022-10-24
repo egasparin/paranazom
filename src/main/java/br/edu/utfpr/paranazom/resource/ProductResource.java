@@ -7,6 +7,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,9 +43,18 @@ public class ProductResource {
 //	}
 	
 	@GetMapping
-	public List<Product> filter(ProductFilter productFilter){
-		return productRepository.filter(productFilter);
+	public Page<Product> pageFilter(ProductFilter productFilter, Pageable pageable){
+		return productRepository.pageFilter(productFilter, pageable);
 	}
+	
+	/*
+	// substituido pelo metodo pageFilter
+	@GetMapping
+	public List<Product> filter(ProductFilter productFilter){
+		return productRepository.listFilter(productFilter);
+	}
+	
+	*/
 	
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
