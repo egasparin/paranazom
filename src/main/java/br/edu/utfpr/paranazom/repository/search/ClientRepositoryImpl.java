@@ -22,7 +22,7 @@ import br.edu.utfpr.paranazom.repository.filter.ClientFilter;
 
 import javax.persistence.criteria.Predicate;
 
-public class ClientRepositoryImplementation implements ClientRepositoryQuery {
+public class ClientRepositoryImpl implements ClientRepositoryQuery {
 
 	@PersistenceContext
 	private EntityManager manager;

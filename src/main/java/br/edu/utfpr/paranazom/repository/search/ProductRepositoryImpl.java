@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 import br.edu.utfpr.paranazom.model.Product;
 import br.edu.utfpr.paranazom.repository.filter.ProductFilter;
 
-public class ProductRepositoryImplementation implements ProductRepositoryQuery{
+public class ProductRepositoryImpl implements ProductRepositoryQuery{
 
 	@PersistenceContext
 	private EntityManager manager;

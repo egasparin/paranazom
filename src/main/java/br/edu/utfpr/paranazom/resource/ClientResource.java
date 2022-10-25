@@ -37,10 +37,14 @@ public class ClientResource {
 	@Autowired
 	private ClientService clientService;
 	
+	/* 
+	Tive que comentar, pois estava dando ambiguidade entre o list() e o pageList()
+	
 	@GetMapping
 	public List<Client> list() {
 		return clientRepository.findAll();
 	}
+	*/
 	
 	@GetMapping
 	public Page<Client> pageFilter(ClientFilter clientFilter, Pageable pageable){
@@ -58,6 +62,7 @@ public class ClientResource {
 		return ResponseEntity.created(uri).body(clientSave);
 	}
 //	
+
 	@GetMapping("/{client_id}")
 	public ResponseEntity<?> getByCode(@PathVariable String client_id) {
 		Optional<Client> client = clientRepository.findById(client_id);
