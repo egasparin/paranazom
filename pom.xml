@@ -68,6 +68,18 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 		
+		<!-- Configuração de segurança - AUTH -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		<!-- Configuração de segurança - OAUTH2 -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.5.0.RELEASE</version>
+		</dependency>
 		
 	</dependencies>
 
