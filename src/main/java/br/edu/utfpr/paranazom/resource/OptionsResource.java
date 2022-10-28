@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,7 @@ public class OptionsResource {
 	
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasAuthority('WRITE_OPTIONS') and #oauth2.hasScope('write')")
 	public ResponseEntity<Options> create(@RequestBody Options options, HttpServletResponse response) {
 		Options optionsSave = optionsRepository.save(options);
 		
@@ -44,6 +46,7 @@ public class OptionsResource {
 	}
 	
 	@GetMapping("/{options_id}")
+	@PreAuthorize("hasAuthority('READ_OPTIONS') and #oauth2.hasScope('write')")
 	public ResponseEntity<?> getByCode(@PathVariable String option_id) {
 		Optional<Options> options = optionsRepository.findById(option_id);
 		return options.isPresent() ? ResponseEntity.ok(options) : ResponseEntity.notFound().build();

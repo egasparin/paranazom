@@ -27,4 +27,6 @@ services:
 	volumes:
 	  - ./MySql:/var/lib/mysql
 ```
+## Discussões
 
+Precisamos discutir sobre os 'filters' e o get de product e client, precisando definir se usaremos tecnicas de paginação e se sim, como será feito a listagem dos produtos para o retorno para o sistema de venda, tipo em um menu suspenso ou campo de busca, como faremso a busca do cliente e do produto.

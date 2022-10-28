@@ -41,7 +41,7 @@ public class UserResource {
 	}
 	
 	@PostMapping
-	@PreAuthorize("hasAuthority('CADASTRAR_USUARIO') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('WRITE_USER') and #oauth2.hasScope('write')")
 	// somente quem tiver autorizacao de CADASTRAR USUARIO e tiver no escopo a escrita, poderá criar usuarios
 //	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> create(@RequestBody User user, HttpServletResponse response) {
@@ -54,7 +54,7 @@ public class UserResource {
 	}
 	
 	@GetMapping("/{user_id}")
-	@PreAuthorize("hasAuthority('PESQUISAR_USUARIO') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('READ_USER') and #oauth2.hasScope('write')")
 	// somente quem tiver autorizacao de PESQUISAR USUARIO e tiver ao menos o escopo de leitura poderá pesquisar usuarios
 	// configurar o mobile para ter apenas acesso a pesquisa de produtos na paginação
 	public ResponseEntity<?> getByCode(@PathVariable String user_id) {
@@ -63,14 +63,14 @@ public class UserResource {
 	}
 	
 	@DeleteMapping("/{user_id}")
-	@PreAuthorize("hasAuthority('CADASTRAR_USUARIO')")
+	@PreAuthorize("hasAuthority('WRITE_USER') and #oauth2.hasScope('write')")
 	@ResponseStatus(HttpStatus.NO_CONTENT) // código 204: deu certo, porém não tenho nada para retornar
 	public void delete(@PathVariable String user_id) {
 		this.userRepository.deleteById(user_id);
 	}
 	
 	@PutMapping("/{user_id}")
-	@PreAuthorize("hasAuthority('CADASTRAR_USUARIO')")
+	@PreAuthorize("hasAuthority('WRITE_USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<User> update(@PathVariable String user_id, @RequestBody User user) {
 		User userSave = userService.update(user_id, user);
 		return ResponseEntity.ok(userSave);
