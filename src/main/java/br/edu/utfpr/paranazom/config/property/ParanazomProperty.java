@@ -1,12 +1,14 @@
 package br.edu.utfpr.paranazom.config.property;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 @ConfigurationProperties("paranazom")
+@Component
 public class ParanazomProperty {
 	
-	private String originPermitida;
-	//private String originPermitida = "http://127.0.0.1:8000";
-	//private String originPermitida = "http://localhost:4200";
+//	private String originPermitida;
+	private String originPermitida = "http://127.0.0.1:8000";
+//	private String originPermitida = "http://localhost:4200";
 	
 	private final Seguranca seguranca = new Seguranca();
 	

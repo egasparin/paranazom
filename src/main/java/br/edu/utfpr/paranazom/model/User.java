@@ -1,16 +1,23 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
 @Table(name = "tb_user")
 public class User {
@@ -33,6 +40,11 @@ public class User {
 	
 	@OneToOne(mappedBy="user")
 	private Employee employee;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_user_permission", joinColumns = @JoinColumn(name = "user_id")
+			, inverseJoinColumns = @JoinColumn(name = "permission_id"))
+	private List<Permissao> permissions;
 	
 	// Definição dos metodos;
 	public String getUser_id() {
@@ -65,6 +77,10 @@ public class User {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	public List<Permissao> getPermissions() {
+		return permissions;
 	}
 
 	@Override
