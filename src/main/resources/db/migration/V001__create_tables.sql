@@ -3,7 +3,8 @@
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tb_category` (
   `category_id` CHAR(36) NOT NULL PRIMARY KEY,
-  `description` VARCHAR(55) NOT NULL
+  `description` VARCHAR(55) NOT NULL,
+  `image_url` VARCHAR(250) NULL
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
