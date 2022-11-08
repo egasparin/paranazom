@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `tb_client` (
   `client_id` CHAR(36) NOT NULL PRIMARY KEY,
   `name` VARCHAR(255) NOT NULL,
   `RG` CHAR(14) NULL,
-  `CPF` CHAR(11) NOT NULL,
+  `CPF` CHAR(11) NOT NULL UNIQUE,
   `email_address` VARCHAR(50) NULL,
   `phone_number` CHAR(11) NULL,
   `address` VARCHAR(255) NULL
