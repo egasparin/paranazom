@@ -14,7 +14,7 @@ INSERT tb_role (role_id, description) VALUES ('e75e70c7-5dfe-11ed-9296-0242ac120
 -- -----------------------------------------------------
 -- Table `tb_employee`
 -- -----------------------------------------------------
-INSERT tb_employee (employee_id, `name`, isActive, entry_date, role_id) VALUES ('668b9f17-5dff-11ed-9296-0242ac120002', 'Matheus Paiva', 1, now(), 'e75e70c7-5dfe-11ed-9296-0242ac120002'),
+INSERT tb_employee (employee_id, `name`, is_active, entry_date, role_id) VALUES ('668b9f17-5dff-11ed-9296-0242ac120002', 'Matheus Paiva', 1, now(), 'e75e70c7-5dfe-11ed-9296-0242ac120002'),
 (uuid(), 'Jeferson Marcondes', 1, now(), 'e75e70c7-5dfe-11ed-9296-0242ac120002');
 
 -- -----------------------------------------------------

@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `tb_role` (
 CREATE TABLE IF NOT EXISTS `tb_employee` (
   `employee_id` CHAR(36) NOT NULL PRIMARY KEY,
   `name` VARCHAR(120) NOT NULL,
-  `isActive` BOOLEAN NOT NULL,
+  `is_active` BOOLEAN NOT NULL,
   `entry_date` DATE NOT NULL,
   `role_id` CHAR(36) NOT NULL,
     FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`role_id`)
