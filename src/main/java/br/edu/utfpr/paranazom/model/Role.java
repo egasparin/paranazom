@@ -1,14 +1,20 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_role")
@@ -57,8 +63,19 @@ public class Role {
 		return Objects.equals(role_id, other.role_id);
 	}
 	
-//	@OneToMany(mappedBy="role")
-//	private List<Employee> employee;
+	@JsonIgnoreProperties("role")
+	@OneToMany(mappedBy="role", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Employee> employee;
+
+	public List<Employee> getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(List<Employee> employee) {
+		this.employee = employee;
+	}
+	
+	
 }
 	
 	
