@@ -99,10 +99,10 @@ ENGINE = InnoDB DEFAULT CHARSET=utf8;
 -- Table `tb_product_has_tb_order`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tb_product_has_tb_order` (
+  `product_order_id` BIGINT(20) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
   `product_id` CHAR(36) NOT NULL,
   `order_id` CHAR(36) NOT NULL,
   `amount` INT NOT NULL,
-  PRIMARY KEY (`product_id`, `order_id`),
     FOREIGN KEY (`product_id`) REFERENCES `tb_product` (`product_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,

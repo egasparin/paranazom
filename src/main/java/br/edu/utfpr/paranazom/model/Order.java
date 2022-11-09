@@ -1,5 +1,6 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -53,6 +55,10 @@ public class Order {
 	@ManyToOne
     @JoinColumn(name="client_id", nullable=false)
 	private Client client;
+	
+	@JsonIgnoreProperties("order")
+	@OneToMany(mappedBy="order")
+	private List<ProductOrderRelation> products_order;
 
 	public String getOrder_id() {
 		return order_id;
@@ -134,7 +140,13 @@ public class Order {
 		Order other = (Order) obj;
 		return Objects.equals(order_id, other.order_id);
 	}
-	
-	
+
+	public List<ProductOrderRelation> getProducts_order() {
+		return products_order;
+	}
+
+	public void setProducts_order(List<ProductOrderRelation> products_order) {
+		this.products_order = products_order;
+	}
 	
 }
