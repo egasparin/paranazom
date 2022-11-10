@@ -44,4 +44,16 @@ public class OrderService {
 		this.orderRepository.save(orderSalva);
 	}
 	
+	public void updatePaid(String order_id, boolean paid) {
+		Order orderSalva = findOrderByCode(order_id);
+		orderSalva.setPaid(paid);
+		this.orderRepository.save(orderSalva);
+	}
+	
+	public void updatewithdrawn(String order_id, boolean withdrawn) {
+		Order orderSalva = findOrderByCode(order_id);
+		orderSalva.setWithdrawn(withdrawn);
+		this.orderRepository.save(orderSalva);
+	}
+	
 }

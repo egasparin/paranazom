@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.utfpr.paranazom.model.ProductOrderRelation;
 import br.edu.utfpr.paranazom.repository.ProductOrderRelationRepository;
+import br.edu.utfpr.paranazom.service.ProductOrderRelationService;
 
 
 @RestController
@@ -25,6 +26,9 @@ public class ProductOrderRelationResource {
 	@Autowired
 	private ProductOrderRelationRepository productOrderRepository;
 	
+	@Autowired
+	private ProductOrderRelationService productOrderService;
+	
 	@GetMapping
 	public List<ProductOrderRelation> list() {
 		return productOrderRepository.findAll();
@@ -33,7 +37,7 @@ public class ProductOrderRelationResource {
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<ProductOrderRelation> create(@RequestBody ProductOrderRelation po, HttpServletResponse response) {
-		ProductOrderRelation poSave = productOrderRepository.save(po);
+		ProductOrderRelation poSave = productOrderService.addProductOrder(po);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{product_order_id}").buildAndExpand(poSave.getProduct_order_id()).toUri();
 //		response.setHeader("Location", uri.toASCIIString());

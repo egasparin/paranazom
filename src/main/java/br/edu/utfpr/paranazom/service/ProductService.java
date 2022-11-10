@@ -38,4 +38,10 @@ public class ProductService {
 		return productSave;
 	}
 	
+	public void updateAmount(String product_id, int amount) {
+		Product productSave = findProductByCode(product_id);
+		productSave.setAmount(amount);
+		this.productRepository.save(productSave);	
+	}
+	
 }
