@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,11 +27,13 @@ public class RoleResource {
 	private RoleRepository roleRepository;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('READ_ROLE') and #oauth2.hasScope('write')")
 	public List<Role> list() {
 		return roleRepository.findAll();
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('WRITE_ROLE') and #oauth2.hasScope('write')")
 //	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Role> create(@RequestBody Role role, HttpServletResponse response) {
 		Role roleSave = roleRepository.save(role);
@@ -42,6 +45,7 @@ public class RoleResource {
 	}
 	
 	@GetMapping("/{role_id}")
+	@PreAuthorize("hasAuthority('WRITE_ROLE') and #oauth2.hasScope('write')")
 	public ResponseEntity<?> getByCode(@PathVariable String role_id) {
 		Optional<Role> role = roleRepository.findById(role_id);
 		return role.isPresent() ? ResponseEntity.ok(role) : ResponseEntity.notFound().build();

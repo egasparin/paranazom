@@ -19,8 +19,7 @@ public class ProductService {
 	public Product update(String product_id, Product product) {
 		Product productSave = findProductByCode(product_id);
 		
-		BeanUtils.copyProperties(product, productSave, "product_id"); // Copia os valores dos atributos de pessoa para pessoaSalva, exceto codigo
-		//pessoa.setCodigo(codigo);
+		BeanUtils.copyProperties(product, productSave, "product_id");
 		
 		return productRepository.save(productSave);
 	}

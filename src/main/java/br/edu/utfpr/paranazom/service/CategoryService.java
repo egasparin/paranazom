@@ -19,8 +19,7 @@ public class CategoryService {
 	public Category update(String category_id, Category category) {
 		Category categorySave = findCategoryByCode(category_id);
 		
-		BeanUtils.copyProperties(category, categorySave, "category_id"); // Copia os valores dos atributos de pessoa para pessoaSalva, exceto codigo
-		//pessoa.setCodigo(codigo);
+		BeanUtils.copyProperties(category, categorySave, "category_id"); 
 		
 		return categoryRepository.save(categorySave);
 	}

@@ -19,8 +19,7 @@ public class UserService {
 	public User update(String user_id, User user) {
 		User userSave = findUserByCode(user_id);
 		
-		BeanUtils.copyProperties(user, userSave, "user_id"); // Copia os valores dos atributos de pessoa para pessoaSalva, exceto codigo
-		//pessoa.setCodigo(codigo);
+		BeanUtils.copyProperties(user, userSave, "user_id"); 
 		
 		return userRepository.save(userSave);
 	}

@@ -19,8 +19,7 @@ public class ClientService {
 	public Client update(String client_id, Client client) {
 		Client clientSave = findClientByCode(client_id);
 		
-		BeanUtils.copyProperties(client, clientSave, "client_id"); // Copia os valores dos atributos de pessoa para pessoaSalva, exceto codigo
-		
+		BeanUtils.copyProperties(client, clientSave, "client_id"); 	
 		return clientRepository.save(clientSave);
 	}
 	

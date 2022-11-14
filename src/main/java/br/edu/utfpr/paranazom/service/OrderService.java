@@ -19,8 +19,7 @@ public class OrderService {
 	public Order update(String order_id, Order order) {
 		Order orderSave = findOrderByCode(order_id);
 		
-		BeanUtils.copyProperties(order, orderSave, "order_id"); // Copia os valores dos atributos de pessoa para pessoaSalva, exceto codigo
-		//pessoa.setCodigo(codigo);
+		BeanUtils.copyProperties(order, orderSave, "order_id"); 
 		
 		return orderRepository.save(orderSave);
 	}

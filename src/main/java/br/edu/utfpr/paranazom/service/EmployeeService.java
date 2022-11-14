@@ -19,9 +19,7 @@ public class EmployeeService {
 	public Employee update(String employee_id, Employee employee) {
 		Employee employeeSave = findEmployeeByCode(employee_id);
 		
-		BeanUtils.copyProperties(employee, employeeSave, "employee_id"); // Copia os valores dos atributos de pessoa para pessoaSalva, exceto codigo
-		//pessoa.setCodigo(codigo);
-		
+		BeanUtils.copyProperties(employee, employeeSave, "employee_id"); 
 		return employeeRepository.save(employeeSave);
 	}
 	

@@ -60,8 +60,5 @@ public class Category {
 			return false;
 		Category other = (Category) obj;
 		return Objects.equals(category_id, other.category_id);
-	}
-	
-	
-	
+	}	
 }

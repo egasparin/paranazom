@@ -47,5 +47,3 @@ INSERT INTO tb_order (order_id, description, client_id, employee_id) VALUES ('69
 -- Table `tb_product_has_tb_order`
 -- -----------------------------------------------------
 INSERT INTO tb_product_has_tb_order (product_id, order_id, amount) VALUES ('a5f09929-e09c-48f2-22d6-2537f882c2d6', '6957d8fe-5e05-11ed-9296-0242ac120002', 1);
-  
-  
