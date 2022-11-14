@@ -19,6 +19,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableWebSecurity
 @EnableAuthorizationServer
 @EnableResourceServer
+
 public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Bean
@@ -30,6 +31,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Bean
 	public PasswordEncoder passwordEncoder(){
+
 		return new BCryptPasswordEncoder();
 	}
 	
