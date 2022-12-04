@@ -39,7 +39,6 @@ public class ProductResource {
 	private ProductService productService;
 	
 	@GetMapping
-	@PreAuthorize("#oauth2.hasScope('read')")
 	public List<Product> list() {
 		return productRepository.findAll();
 	}

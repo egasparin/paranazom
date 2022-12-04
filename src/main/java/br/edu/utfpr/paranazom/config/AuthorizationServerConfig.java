@@ -39,8 +39,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 				.scopes("read") // acesso via mobile somente tera escopo de leitura
 				.authorizedGrantTypes("password", "refresh_token")
 				.accessTokenValiditySeconds(15) // nao é ideal que fique muito tempo, vamos reduzir para alguns segundos e atualizar constantemente com refresh token
-				.refreshTokenValiditySeconds(3600 * 10); // o token que estara no cookie terá um tempo de vida de 10 horas
-			
+				.refreshTokenValiditySeconds(3600 * 10) // o token que estara no cookie terá um tempo de vida de 10 horas
+			.and()
+				.withClient("react")
+				.secret("$2a$10$v.Ks3TsBe4ZUfkCdMG/vJepbIUvKbRrJ9gUPUyeJCDW4a4Qjp268y") // : gerada pelo CreateEncrypted
+				.scopes("read", "write") //escopo
+				.authorizedGrantTypes("password", "refresh_token")
+				.accessTokenValiditySeconds(15) // nao é ideal que fique muito tempo, vamos reduzir para alguns segundos e atualizar constantemente com refresh token
+				.refreshTokenValiditySeconds(3600 * 10);
 	}
 	
 	@Override
