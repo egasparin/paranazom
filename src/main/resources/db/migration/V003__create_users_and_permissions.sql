@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- populando a tabela de usuarios
-INSERT INTO `tb_user`(`user_id`, `email`, `password`, `employee_id` ) values ('6fb1d2ed-066a-44cb-92fb-a13b93a585ed', 'admin@paranazom.com', 'MOjb.ujgjpX0na', '27820266-f797-4e72-a4d3-bae95c646ebb');
+INSERT INTO `tb_user`(`user_id`, `email`, `password`, `employee_id` ) values ('6fb1d2ed-066a-44cb-92fb-a13b93a585ed', 'admin@paranazom.com', '$2a$10$oHXnLbV0qQMH2yEWUAsTKuqcvTT0CUfhc23QrhDZk0PI0hpN47Nyy', '27820266-f797-4e72-a4d3-bae95c646ebb');
 INSERT INTO `tb_user`(`user_id`, `email`, `password`, `employee_id`) values ('c0a873c2-b8f8-446f-ae18-ffb9ef57426e', 'eduardo@paranazom.com', '$2a$10$Zc3w6HyuPOPXamaMhh', '668b9f17-5dff-11ed-9296-0242ac120002');
 
 -- populando a tabela de permissoes
