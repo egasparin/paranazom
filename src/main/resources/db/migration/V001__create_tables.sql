@@ -37,7 +37,7 @@ ENGINE = InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE IF NOT EXISTS `tb_user` (
   `user_id` CHAR(36) NOT NULL PRIMARY KEY,
   `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
   `employee_id` CHAR(36) NULL,
     FOREIGN KEY (`employee_id`) REFERENCES `tb_employee` (`employee_id`)
     ON DELETE NO ACTION
