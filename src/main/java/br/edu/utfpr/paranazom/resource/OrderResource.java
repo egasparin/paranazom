@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,12 +36,14 @@ public class OrderResource {
 	private OrderService orderService;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('READ_ORDER')")
 	public List<Order> list() {
 		return orderRepository.findAll();
 	}
 	
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasAuthority('WRITE_ORDER')")
 	public ResponseEntity<Order> create(@RequestBody Order order, HttpServletResponse response) {
 		Order orderSave = orderRepository.save(order);
 		
@@ -51,18 +54,21 @@ public class OrderResource {
 	}
 	
 	@GetMapping("/{order_id}")
+	@PreAuthorize("hasAuthority('READ_ORDER')")
 	public ResponseEntity<?> getByCode(@PathVariable String order_id) {
 		Optional<Order> order = orderRepository.findById(order_id);
 		return order.isPresent() ? ResponseEntity.ok(order) : ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/{order_id}")
+	@PreAuthorize("hasAuthority('WRITE_ORDER')")
 	@ResponseStatus(HttpStatus.NO_CONTENT) // código 204: deu certo, porém não tenho nada para retornar
 	public void delete(@PathVariable String order_id) {
 		this.orderRepository.deleteById(order_id);
 	}
 	
 	@PutMapping("/{order_id}")
+	@PreAuthorize("hasAuthority('WRITE_ORDER')")
 	public ResponseEntity<Order> update(@PathVariable String order_id, @RequestBody Order order) {
 		Order orderSave = orderService.update(order_id, order);
 		return ResponseEntity.ok(orderSave);

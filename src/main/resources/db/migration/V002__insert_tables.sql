@@ -7,14 +7,14 @@ INSERT tb_category (category_id, description) VALUES ('a5f09909-e09c-48fa-a2d6-2
 -- -----------------------------------------------------
 -- Table `tb_role`
 -- -----------------------------------------------------
-INSERT tb_role (role_id, description) VALUES ('e75e70c7-5dfe-11ed-9296-0242ac120002', 'Vendedor'), 
+INSERT tb_role (role_id, description) VALUES ('e75e70c7-5dfe-11ed-9296-0242ac120002', 'Vendedor'), ('045b796d-e4a4-4712-9d31-bfd06bd6dafa', 'Admin'),
 (uuid(), 'Caixa'), 
 (uuid(), 'Gerente'); 
 
 -- -----------------------------------------------------
 -- Table `tb_employee`
 -- -----------------------------------------------------
-INSERT tb_employee (employee_id, `name`, is_active, entry_date, role_id) VALUES ('668b9f17-5dff-11ed-9296-0242ac120002', 'admin', 1, now(), 'e75e70c7-5dfe-11ed-9296-0242ac120002');
+INSERT tb_employee (employee_id, `name`, is_active, entry_date, role_id) VALUES ('668b9f17-5dff-11ed-9296-0242ac120002', 'admin', 1, now(), '045b796d-e4a4-4712-9d31-bfd06bd6dafa');
 
 -- -----------------------------------------------------
 -- Table `tb_user`

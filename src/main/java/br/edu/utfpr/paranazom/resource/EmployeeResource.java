@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,12 +36,14 @@ public class EmployeeResource {
 	private EmployeeService employeeService;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('READ_EMPLOYEE')")
 	public List<Employee> list() {
 		return employeeRepository.findAll();
 	}
 	
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasAuthority('WRITE_EMPLOYEE')")
 	public ResponseEntity<Employee> create(@RequestBody Employee employee, HttpServletResponse response) {
 		Employee employeeSave = employeeRepository.save(employee);
 		
@@ -51,18 +54,21 @@ public class EmployeeResource {
 	}
 	
 	@GetMapping("/{employee_id}")
+	@PreAuthorize("hasAuthority('READ_EMPLOYEE')")
 	public ResponseEntity<?> getByCode(@PathVariable String employee_id) {
 		Optional<Employee> employee = employeeRepository.findById(employee_id);
 		return employee.isPresent() ? ResponseEntity.ok(employee) : ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/{employee_id}")
+	@PreAuthorize("hasAuthority('WRITE_EMPLOYEE')")
 	@ResponseStatus(HttpStatus.NO_CONTENT) // código 204: deu certo, porém não tenho nada para retornar
 	public void delete(@PathVariable String employee_id) {
 		this.employeeRepository.deleteById(employee_id);
 	}
 	
 	@PutMapping("/{employee_id}")
+	@PreAuthorize("hasAuthority('WRITE_EMPLOYEE')")
 	public ResponseEntity<Employee> update(@PathVariable String employee_id, @RequestBody Employee employee) {
 		Employee employeeSave = employeeService.update(employee_id, employee);
 		return ResponseEntity.ok(employeeSave);

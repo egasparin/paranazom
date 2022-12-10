@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "tb_user")
@@ -63,7 +64,9 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodPassword = encoder.encode(password); // Senha que deseja que seja gerada
+		this.password = encodPassword;
 	}
 
 	public Employee getEmployee() {

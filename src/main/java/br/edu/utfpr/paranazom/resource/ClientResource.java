@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,12 +47,14 @@ public class ClientResource {
 	*/
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('READ_CLIENT')")
 	public Page<Client> pageFilter(ClientFilter clientFilter, Pageable pageable){
 		return clientRepository.pageFilter(clientFilter, pageable);
 	}
 		
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasAuthority('WRITE_CLIENT')")
 	public ResponseEntity<Client> create(@RequestBody Client client, HttpServletResponse response) {
 		Client clientSave = clientRepository.save(client);
 		
@@ -63,18 +66,21 @@ public class ClientResource {
 //	
 
 	@GetMapping("/{client_id}")
+	@PreAuthorize("hasAuthority('READ_CLIENT')")
 	public ResponseEntity<?> getByCode(@PathVariable String client_id) {
 		Optional<Client> client = clientRepository.findById(client_id);
 		return client.isPresent() ? ResponseEntity.ok(client) : ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/{client_id}")
+	@PreAuthorize("hasAuthority('WRITE_CLIENT')")
 	@ResponseStatus(HttpStatus.NO_CONTENT) // código 204: deu certo, porém não tenho nada para retornar
 	public void delete(@PathVariable String client_id) {
 		this.clientRepository.deleteById(client_id);
 	}
 	
 	@PutMapping("/{client_id}")
+	@PreAuthorize("hasAuthority('WRITE_CLIENT')")
 	public ResponseEntity<Client> update(@PathVariable String client_id, @RequestBody Client client) {
 		Client clientSave = clientService.update(client_id, client);
 		return ResponseEntity.ok(clientSave);

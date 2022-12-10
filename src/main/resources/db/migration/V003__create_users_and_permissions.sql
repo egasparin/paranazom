@@ -11,6 +11,10 @@ CREATE TABLE IF NOT EXISTS `tb_user_permission` (
 	FOREIGN KEY (`permission_id`) REFERENCES `tb_permission` (`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT tb_employee (employee_id, `name`, is_active, entry_date, role_id) VALUES ('58a60d38-7881-11ed-a1eb-0242ac120002', 'vendedor', 1, now(), 'e75e70c7-5dfe-11ed-9296-0242ac120002');
+INSERT tb_user (user_id, email, password, employee_id) VALUES ('52bc8c76-7881-11ed-a1eb-0242ac120002', 'vendedor@paranazom.com', '$2a$10$D6tBThS1J2J8eeaAdRZEKuL67RgxWpdGEuYj303latIV34sb8xld.','58a60d38-7881-11ed-a1eb-0242ac120002');
+
+
 -- populando a tabela de permissoes
 
 INSERT INTO `tb_permission` (`permission_id`, `description`) values (1, 'WRITE_CATEGORY');
@@ -65,3 +69,18 @@ INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('970978e3-
 INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('970978e3-5e02-11ed-9296-0242ac120002', 18);
 INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('970978e3-5e02-11ed-9296-0242ac120002', 19);
 INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('970978e3-5e02-11ed-9296-0242ac120002', 20);
+
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 1);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 2);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 5);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 6);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 9);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 10);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 11);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 12);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 13);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 14);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 15);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 16);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 17);
+INSERT INTO `tb_user_permission` (`user_id`, `permission_id`) values ('52bc8c76-7881-11ed-a1eb-0242ac120002', 18);

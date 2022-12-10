@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,11 +31,13 @@ public class ProductOrderRelationResource {
 	private ProductOrderRelationService productOrderService;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('READ_ORDER')")
 	public List<ProductOrderRelation> list() {
 		return productOrderRepository.findAll();
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('WRITE_ORDER')")
 //	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<ProductOrderRelation> create(@RequestBody ProductOrderRelation po, HttpServletResponse response) {
 		ProductOrderRelation poSave = productOrderService.addProductOrder(po);

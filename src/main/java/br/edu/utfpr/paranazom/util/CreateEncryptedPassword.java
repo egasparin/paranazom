@@ -7,6 +7,6 @@ public class CreateEncryptedPassword{
 	
 	public static void main(String[] args) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println(encoder.encode("admin")); // Senha que deseja que seja gerada
+		System.out.println(encoder.encode("vendedor")); // Senha que deseja que seja gerada
 	}
 }
