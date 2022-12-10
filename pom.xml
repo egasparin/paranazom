@@ -68,6 +68,12 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 		
+		<!-- Configuração de segurança - AUTH -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
 		
 	</dependencies>
 
