@@ -1,11 +1,15 @@
 package br.edu.utfpr.paranazom.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -32,6 +36,11 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="employee_id", nullable=false)
 	private Employee employee;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_user_permission", joinColumns = @JoinColumn(name = "user_id")
+			, inverseJoinColumns = @JoinColumn(name = "permission_id"))
+	private List<Permission> permissions;
 
 	public String getUser_id() {
 		return user_id;
@@ -63,6 +72,16 @@ public class User {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	
+	
+
+	public List<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
 	}
 
 	@Override

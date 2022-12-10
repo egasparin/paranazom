@@ -19,7 +19,7 @@ INSERT tb_employee (employee_id, `name`, is_active, entry_date, role_id) VALUES 
 -- -----------------------------------------------------
 -- Table `tb_user`
 -- -----------------------------------------------------
-INSERT tb_user (user_id, email, password, employee_id) VALUES ('970978e3-5e02-11ed-9296-0242ac120002', 'admin@paranazon.com', '$2a$10$sPEXf4kFFF6xj9uTcsJeQe84C6AmHwWwNg.oHdwBb12rbVT9fmVG.','668b9f17-5dff-11ed-9296-0242ac120002');
+INSERT tb_user (user_id, email, password, employee_id) VALUES ('970978e3-5e02-11ed-9296-0242ac120002', 'admin@paranazom.com', '$2a$10$sPEXf4kFFF6xj9uTcsJeQe84C6AmHwWwNg.oHdwBb12rbVT9fmVG.','668b9f17-5dff-11ed-9296-0242ac120002');
 
 -- -----------------------------------------------------
 -- Table `tb_product`
