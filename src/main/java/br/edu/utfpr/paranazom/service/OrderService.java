@@ -38,21 +38,21 @@ public class OrderService {
 		return orderSave;
 	}
 	
-	public void updateDraft(String order_id, boolean draft) {
+	public void updateDraft(String order_id) {
 		Order orderSalva = findOrderByCode(order_id);
-		orderSalva.setDraft(draft);
+		orderSalva.setDraft(!orderSalva.isDraft());
 		this.orderRepository.save(orderSalva);
 	}
 	
-	public void updatePaid(String order_id, boolean paid) {
+	public void updatePaid(String order_id) {
 		Order orderSalva = findOrderByCode(order_id);
-		orderSalva.setPaid(paid);
+		orderSalva.setPaid(!orderSalva.isPaid());
 		this.orderRepository.save(orderSalva);
 	}
 	
-	public void updatewithdrawn(String order_id, boolean withdrawn) {
+	public void updatewithdrawn(String order_id) {
 		Order orderSalva = findOrderByCode(order_id);
-		orderSalva.setWithdrawn(withdrawn);
+		orderSalva.setWithdrawn(!orderSalva.isWithdrawn());
 		this.orderRepository.save(orderSalva);
 	}
 	

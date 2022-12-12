@@ -75,9 +75,24 @@ public class OrderResource {
 	}
 
 	@PutMapping("/{order_id}/draft")
+	@PreAuthorize("hasAuthority('WRITE_ORDER')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void updateDraft(@PathVariable String order_id, @RequestBody boolean draft) {
-		orderService.updateDraft(order_id, draft);
+	public void updateDraft(@PathVariable String order_id) {
+		orderService.updateDraft(order_id);
+	}
+	
+	@PutMapping("/{order_id}/paid")
+	@PreAuthorize("hasAuthority('WRITE_ORDER')")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updatePaid(@PathVariable String order_id) {
+		orderService.updatePaid(order_id);
+	}
+	
+	@PutMapping("/{order_id}/withdrawn")
+	@PreAuthorize("hasAuthority('WRITE_ORDER')")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateWithdrawn(@PathVariable String order_id) {
+		orderService.updatewithdrawn(order_id);
 	}
 	
 }
